@@ -1,0 +1,6 @@
+/vendor/*
+/node_modules/*
+/storage/files/*
+/public/antvel-bower/*
+.env
+composer.lock
