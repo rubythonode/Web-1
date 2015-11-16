@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title><?php echo e(trans('globals.app_title')); ?> - <?php echo $__env->yieldContent('title'); ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+	<?php $__env->startSection('css'); ?>
+		<?php echo Html::style('/css/vendor/theme.css'); ?>
+
+		<?php echo Html::style('/css/vendor/animate.css'); ?>
+
+		<?php echo Html::style('/css/vendor/font-awesome.min.css'); ?>
+
+		<?php echo Html::style('/antvel-bower/pnotify/pnotify.core.css'); ?>
+
+		<?php echo Html::style('/antvel-bower/pnotify/pnotify.buttons.css'); ?>
+
+		<?php echo Html::style('/css/app.css'); ?>
+
+	<?php echo $__env->yieldSection(); ?>
+
+	<?php $__env->startSection('js'); ?>
+		<?php echo Html::script('/antvel-bower/jquery/dist/jquery.js'); ?>
+
+		<?php echo Html::script('/antvel-bower/bootstrap/dist/js/bootstrap.js'); ?>
+
+		<?php echo Html::script('/antvel-bower/pnotify/pnotify.core.js'); ?>
+
+		<?php echo Html::script('/antvel-bower/pnotify/pnotify.buttons.js'); ?>
+
+		<?php echo Html::script('/js/theme.js'); ?>
+
+	<?php echo $__env->yieldSection(); ?>
+
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body id="<?php echo $__env->yieldContent('id_page', 'home2'); ?>">
+
+	<?php $__env->startSection('navigation'); ?>
+		<?php echo $__env->make('partial.navigation', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->yieldSection(); ?>
+
+	<?php $__env->startSection('content'); ?>
+
+	<?php echo $__env->yieldSection(); ?>
+
+	<?php $__env->startSection('footer'); ?>
+		<?php echo $__env->make('partial.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->yieldSection(); ?>
+
+	<?php /* this section is to place all the scripts needed in each view */ ?>
+	<?php $__env->startSection('scripts'); ?>
+
+	<?php echo $__env->yieldSection(); ?>
+
+	<?php $__env->startSection('jsMessages'); ?>
+
+	<?php echo $__env->yieldSection(); ?>
+
+</body>
+</html>

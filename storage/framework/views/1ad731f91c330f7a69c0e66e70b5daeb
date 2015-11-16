@@ -1,0 +1,112 @@
+<?php $__env->startSection('navigation'); ?> <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?> Login <?php $__env->stopSection(); ?> 
+
+<?php $__env->startSection('id_page', 'signup'); ?> <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('partial.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-12">
+				<h3 class="logo">
+					<a href="/"><?php echo e(trans('user.signin_content.title')); ?></a>
+				</h3>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrapper clearfix">
+					<div class="formy">
+
+						<div class="row">
+							<div class="col-md-12">
+								<a href="/login/facebook" class="button button-small col-md-12 text-center">
+									<span class="fa fa-facebook-square"></span>
+									<?php echo e(trans('user.signin_content.facebook_login')); ?> </a>
+								</a>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="row">
+
+							<div class="col-md-12">
+
+								<?php echo Form::open(['url'=>'auth/login', 'role'=>'form']); ?>
+
+								
+									<div class="form-group">
+							    		<?php echo Form::label('email',trans('user.email')); ?>
+
+										<?php echo Form::text('email', old('email'), ['class'=>'form-control']); ?>
+
+							  		</div>
+
+							  		<div class="form-group">
+							    		<?php echo Form::label('password',trans('user.password')); ?>
+
+							    		<input type="password" class="form-control" id="password" name="password" />
+							  		</div>
+
+							  		<div class="form-group">
+										<label><?php echo e(trans('user.are_you_human')); ?></label>
+										<?php echo Recaptcha::render(); ?>
+
+						  			</div>
+
+							  		<div class="checkbox">
+							    		<label>
+							    			<?php echo Form::checkbox('remember', 'value', false); ?>&nbsp;<?php echo e(trans('user.remember_me')); ?>
+
+							    		</label>
+							  		</div>
+
+							  		<div class="submit">
+							  			<button type="submit" class="button-clear col-md-12 text-center">
+								  			<span><?php echo e(trans('user.signin_content.sign_in_here')); ?></span>
+								  		</button>
+							  		</div>
+								
+								<?php echo Form::close(); ?>
+
+
+							</div>
+						</div>						
+					</div>
+				</div>
+				<div class="already-account">
+					<?php echo e(trans('user.signin_content.no_account')); ?>
+
+					<a href="/auth/register" data-toggle="popover" data-placement="top" data-content="<?php echo e(trans('user.signin_content.go_to_sign_up')); ?>" data-trigger="manual"><?php echo e(trans('user.signin_content.create_one_here')); ?></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+	<script type="text/javascript">
+		$(function ()
+		{
+			$(".already-account a").mouseover(function()
+			{
+  				$(".already-account a").popover('show');
+			});
+
+			$(".already-account a").mouseout(function()
+			{
+  				$(".already-account a").popover('hide');
+			});
+		});
+	</script>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footer'); ?> <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts/master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
