@@ -1,5 +1,6 @@
 ## Antvel eCommerce - Web Site
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ant-vel/antvel-web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
 **This is an alpha, experimental release of Antvel Web Site. Everything will change gradually, looking forward to get the best of this awesome product. Thank you for testing!**
