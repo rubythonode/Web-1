@@ -13,7 +13,7 @@
 
 The documentations is in progress
 
-### Contact
+### Contact Information
 
 You can communicate with us using the following mediums:
 
@@ -22,6 +22,7 @@ You can communicate with us using the following mediums:
 * [Join us on hipChat](https://antvel.hipchat.com/home) to chat with us.
 * [Email](gustavoocanto@gmail.com) for questions
 * http://g-ocanto.com
+
 
 ### License
 
