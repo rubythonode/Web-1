@@ -28,10 +28,12 @@ Route::get('verification/{token}', 'UserController@accountVerification');
 Route::get('/', ['as'=>'home', 'uses'=>'HomeController@index']);
 
 Route::group(['prefix' => 'home'], function () {
-    
+
     Route::get('/', 'HomeController@index');
 
 });
+
+Route::get('img/{file?}', 'FileController@img')->where('file', '(.*)');
 
 
 #antvel panel
