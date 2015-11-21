@@ -10,14 +10,14 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        #create basic admin user
         $faker=Faker::create();
+
         User::create([
             'first_name' => 'root',
             'last_name'  => 'root',
             'email'=>'root@root.com',
             'role'=>'root',
-            'password'=>\Hash::make('root'),
+            'password'=>\Hash::make('123456'),
             'status' => 'active'
         ]);
 
@@ -25,8 +25,8 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'admin',
             'last_name'  => 'admin',
             'email'=>'admin@admin.com',
-            'role'=>'administrador',
-            'password'=>\Hash::make('admin'),
+            'role'=>'admin',
+            'password'=>\Hash::make('123456'),
             'status' => 'active'
         ]);
 
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'last_name'  => 'client',
             'email'=>'client@client.com',
             'role'=>'client',
-            'password'=>\Hash::make('client'),
+            'password'=>\Hash::make('123456'),
             'status' => 'active'
         ]);
 
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
             'last_name'  => 'support',
             'email'=>'support@support.com',
             'role'=>'support',
-            'password'=>\Hash::make('support'),
+            'password'=>\Hash::make('123456'),
             'status' => 'active'
         ]);
     }

@@ -2,11 +2,11 @@
 
 return [
 
-  'app_title' 			=> 'Antvel',
+  'app_title' 			    => 'Antvel',
   'success_alert_title' => 'Success',
   'error_alert_title' 	=> 'Oh No!',
-  'read_agree_01' 		=> 'You have read & agree to the',
-  'read_agree_02' 		=> 'Terms of service',
+  'read_agree_01' 		  => 'You have read & agree to the',
+  'read_agree_02' 		  => 'Terms of service',
   'faq'                 => 'FAQs',
   'cancel'              => 'Cancel',
   'contact'             => 'Contact',
@@ -90,5 +90,16 @@ return [
   'top_rated'           => 'Top Rated',
   'image'               => 'Image',
   'reset'               => 'Reset',
+
+  'home_features' => [
+      'easy_way' => 'Need an easy way to build an eCommerce ?',
+      'novice_business' => 'Antvel is perfect for novice business and experts alike.',
+      'estore_ready' => 'Antvel is our "out of the box" solution. You just need to fill your company information up, add as many products as you want, and start selling and taking orders online.',
+      'will_not_need' => 'You will not need to have great technical experience to use this product as your eStore.',
+      'most_stable' => 'Our eCommerce is all about customer experience, having an incredibly faster load, products suggestion, unlimited categories, products grouping, and much more.',
+      'antvel_is_not_just_a_product' => 'Antvel is not just a product',
+      'service_that_will_make' => 'It is an entire service that will make you feel completely supported and happy because we are always involved making new features and improvements to the old ones.',
+      'therefore_service_that_will_make' => 'Therefore, it is not just a product, it is a partnership among customer and our team because once you abouard, we will become in either your team or part of your existing one.'
+  ]
 
 ];

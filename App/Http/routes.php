@@ -18,8 +18,10 @@ Route::controllers([
 
 //facebook login
 Route::get('/login/facebook', 'Auth\AuthController@getFacebookAuthorization');
-
 Route::get('/login/facebook/callback', 'Auth\AuthController@facebookRetrieving');
+
+//images controller
+Route::get('img/{file?}', 'FileController@img')->where('file', '(.*)');
 
 //user account verification
 Route::get('verification/{token}', 'UserController@accountVerification');
@@ -33,29 +35,24 @@ Route::group(['prefix' => 'home'], function () {
 
 });
 
-Route::get('img/{file?}', 'FileController@img')->where('file', '(.*)');
-
-
-#antvel panel
-Route::group(['prefix'=>'apanel', 'roles'=>'root', 'middleware'=>['auth', 'roles']], function () {
-
+// admin panel
+Route::group(['prefix' => 'apanel', 'roles' => ['root', 'admin'], 'middleware' => ['auth', 'roles']], function () {
 
 	Route::resource('users', 'UsersController');
 
 });
 
-#antvel Support
-Route::group(['prefix'=>'support', 'roles'=>'Support', 'middleware'=>['auth', 'roles']], function () {
+//support panel
+Route::group(['prefix' => 'support', 'roles' => ['root', 'admin', 'support'], 'middleware'=>['auth', 'roles']], function () {
 
-	Route::resource('users', 'UsersController',['only' => ['index', 'show']]);
-
-});
-
-#panel de cliente
-Route::group(['prefix'=>'admin', 'roles'=>'Client', 'middleware'=>['auth', 'roles']], function () {
-
-	Route::resource('users', 'UsersController',['only' => ['update', 'show', 'edit']]);
+	Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
 
 });
 
+// clients panel
+Route::group(['prefix'=>'client', 'roles' => ['root', 'admin', 'client'], 'middleware'=>['auth', 'roles']], function () {
+
+	Route::resource('users', 'UsersController', ['only' => ['update', 'show', 'edit']]);
+
+});
 

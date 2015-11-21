@@ -1,37 +1,35 @@
 @extends('layouts/master')
 
-@section('title') Home @stop 
+@section('title') Home @stop
 
 @section('id_page', 'home2') @stop
 
 @include('partial.message')
 
 @section('content')
-		
+
 		{{-- <div class="row">
 			<button id="test">here</button>
 		</div> --}}
 
 		@include('partial.slide')
-		
+
 		@include('partial.features')
-		
+
 		@include('partial.pricing')
-		
-		@include('partial.featuresHover')
-		
+
 		@include('partial.testimonials')
-		
+
 		<div id="cta">
 			<p>
-				Start your free 14 day trial! 
+				Start your free 14 day trial!
 			</p>
 			<a href="signup.html">
 				Sign up for free
 			</a>
 		</div>
-		
-		@include('partial.clients')	
+
+		@include('partial.clients')
 
 @stop
 
@@ -100,7 +98,7 @@
 
 			$activeSlide.fadeOut();
 			$nextSlide.addClass("next").fadeIn();
-			
+
 			setTimeout(function () {
 				$slides.removeClass("next").removeClass("active");
 				$nextSlide.addClass("active");
@@ -135,10 +133,10 @@
 				$videoModal.find(".wrap").html('<iframe src="http://player.vimeo.com/video/22439234" width="620" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
 			}, 1000);
 		})
-		
+
 		$videoModal.find(".wrap").click(function (e) {
 			e.stopPropagation();
 		});
-	});	
+	});
 	</script>
 @stop

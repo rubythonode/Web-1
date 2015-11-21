@@ -1,6 +1,6 @@
 <?php
 return [
-    
+
         'user'                         =>'User',
         'users'                        =>'Users',
         'account'                      =>'Account',
@@ -42,6 +42,7 @@ return [
         'timezone'                     =>'Time Zone',
         'language'                     =>'Language',
         'invalid_action'               =>'Invalid Action',
+        'insufficient_role'            =>'You do not have enough permission to access to that section.',
 
         //Message
         'saved'                        =>'User was successfully saved!',
@@ -67,7 +68,7 @@ return [
                         'msg_03' => 'If you have any problem verifying your account, please send a email to',
                         'msg_04' => 'to get assistance!',
                         'msg_05' => 'Thanks!'
-                ]   
+                ]
         ],
 
         'account_verified_ok_message' => '<strong>Activation results!</strong><br/><br/>Congratulation [name]!, your account was successfully activated.',

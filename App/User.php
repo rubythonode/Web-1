@@ -45,40 +45,38 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         if (is_array($role)) {
             return in_array($this->attributes['role'], $role);
         }
-        
+
         return $this->attributes['role'] == $role;
     }
     public function isAdministrator()
     {
-        return $this->attributes['role'] == 'Administrator';
+        return $this->attributes['role'] == 'admin';
     }
 
     public function isRoot()
     {
-        return $this->attributes['role'] == 'Root';
+        return $this->attributes['role'] == 'root';
     }
 
     public function isClient()
     {
-        return $this->attributes['role'] == 'Client';
+        return $this->attributes['role'] == 'client';
     }
 
     public function isSupport()
     {
-        return $this->attributes['role'] == 'Support';
+        return $this->attributes['role'] == 'support';
     }
 
     static function cantUpdate($id)
     {
-
-        return \Auth::check() && 
-               ( \Auth::id() == $id || 
-               ( \Auth::user() && in_array( \Auth::user()->role,['Administrator','Root']) ) ) ;
+        return \Auth::check() &&
+               ( \Auth::id() == $id ||
+               ( \Auth::user() && in_array( \Auth::user()->role,['admin', 'root']) ) ) ;
     }
 
     static function cantDelete($id)
     {
-
-        return \Auth::user() && in_array( \Auth::user()->role,['Administrator','Root']) ;
+        return \Auth::user() && in_array(\Auth::user()->role, ['admin', 'root']) ;
     }
 }
