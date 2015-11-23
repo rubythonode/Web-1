@@ -147,12 +147,13 @@ return [
         /*
          * Vendors
          */
-        
+
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class
     ],
 
     /*
@@ -200,20 +201,20 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        
+
         /*
          * Vendors
          */
-        
+
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
-        'Form'      => Collective\Html\FormFacade::class, 
+        'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         /*
          * App Alieses
          */
-        
+
         'Menu'      => App\Helpers\Menu::class,
         'Utility'   => App\Helpers\Utility::class,
 

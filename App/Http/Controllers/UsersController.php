@@ -24,7 +24,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-        
         $users = User::paginate(15);
         return view('user.list',compact('users'));
     }
@@ -47,7 +46,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $v = \Validator::make($request->all(), $this->form_rules);
         if ($v->fails()) {
             $request->flash();
@@ -61,7 +60,7 @@ class UsersController extends Controller
 
         $auth = \Auth::user();
 
-        if($auth && $auth->hasRole(['Root','Administrator'])){
+        if($auth && $auth->hasRole(['root','admin'])){
 
             $user->role = $request->get('role');
             $user->status = $request->get('status');
@@ -69,7 +68,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect()->route(Utility::panelRoute('users.edit'), [$user->id])->with('message', trans('user.saved')); 
+        return redirect()->route(Utility::panelRoute('users.edit'), [$user->id])->with('message', trans('user.saved'));
     }
 
     /**
@@ -80,8 +79,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
-        
+
+
     }
 
     /**
@@ -91,7 +90,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function edit($id)
-    {   
+    {
         $user = User::where('id',$id)->first();
 
         if (!$user || !User::cantUpdate($id)) {
@@ -160,27 +159,27 @@ class UsersController extends Controller
 
 
     /**
-     * accountVerification allows users account verification 
+     * accountVerification allows users account verification
      * @param  [string] $token is the var sent to users email to validate if the account belongs to him or not.
      */
     public function accountVerification($token)
     {
         //validating if the token retrieved is valid
         $user = User::select(['id'])
-            ->where('confirmation_code','LIKE', $token)  
+            ->where('confirmation_code','LIKE', $token)
             ->first();
 
         if ($user)
-        { 
+        {
             $name = $user->name.' '.$user->last_name;
             Session::put('message', str_replace('[name]', $name, trans('user.account_verified_ok_message')));
-        }    
+        }
 
         else
         {
             Session::put('messageClass', 'alert alert-danger');
             Session::put('message', trans('user.account_verified_error_message'));
-        }   
+        }
 
         Session::save();
 

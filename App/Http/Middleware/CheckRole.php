@@ -15,16 +15,16 @@ class CheckRole
     {
         $roles = $this->getRequiredRoleForRoute($request->route());
 
-        if ($request->user()->hasRole($roles) || !$roles) {
+        if ($request->user()->hasRole($roles)) {
             return $next($request);
         }
-        return response([
-        	'error' => [
-        		'code' => 'INSUFFICIENT_ROLE',
-        		'description' => trans('user.insufficient_role')
-        	]
-        ], 401);
-        
+
+        \Session::put('message', trans('user.insufficient_role'));
+        \Session::put('messageClass', 'error');
+        \Session::put('messageIcon', 'glyphicon glyphicon-remove-circle');
+        \Session::put('messageTitle', trans('globals.error_alert_title'));
+        \Session::save();
+
         return redirect()->route('home');
     }
 

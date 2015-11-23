@@ -20,11 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->string('language')->default('en');
             $table->string('timezone')->default('America/New_York');
-            $table->timestamp('disabled_at')->nullable(); 
-            $table->enum('role', ['Root','Administrador','Support','Client'])->default('Client');
+            $table->timestamp('disabled_at')->nullable();
+            $table->enum('role', ['root','admin','support','client'])->default('client');
             $table->boolean('confirmed')->default(0);
-            $table->string('confirmation_code', 50)->nullable(); 
-            $table->string('facebook_id', 100)->nullable(); 
+            $table->string('confirmation_code', 50)->nullable();
+            $table->string('facebook_id', 100)->nullable();
             $table->enum('status',['active', 'inactive'])->default('active');
             $table->rememberToken();
             $table->timestamps();

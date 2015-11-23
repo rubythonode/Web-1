@@ -1,6 +1,6 @@
 <div id="hero">
-	<a class="slide-nav prev" href="#">Prev</a>
-	<a class="slide-nav next" href="#">Next</a>
+	<a class="slide-nav prev" href="#">{{ trans('globlas.previous') }}</a>
+	<a class="slide-nav next" href="#">{{ trans('globlas.next') }}</a>
 	<nav>
 		<a class="active" href="#"></a>
 		<a href="#"></a>
@@ -13,21 +13,20 @@
 				<div class="row">
 					<div class="col-sm-6 info">
 						<h1 class="hero-text">
-							Make it awesome.
+							{{ trans('slide.title_01') }}
 						</h1>
 						<p>
-							React is the best way to get a great design out of the box with lots of options for customization.
+							{{ trans('slide.message_01') }}
 						</p>
 						<div class="cta">
 							<a href="features.html" class="button-outline">
-								TRY IT FREE
+								{{ trans('slide.button_01') }}
 								<i class="fa fa-chevron-right"></i>
 							</a>
 						</div>
 					</div>
 					<div class="col-sm-6 hidden-xs mobiles">
-						<!-- <img src="images/static-hero.png" class="animated fadeInLeft" alt="devices" /> -->
-						<img src="images/devices3.png" class="animated fadeInLeft img-responsive" alt="devices" />
+						<img src="img/template/devices3.png" class="animated fadeInLeft img-responsive" alt="devices" />
 					</div>
 				</div>
 			</div>
@@ -35,13 +34,13 @@
 		<div class="slide second">
 			<div class="bg"></div>
 			<div class="container">
-				<h1 class="hero-text">Get the best technology videos online for free.</h1>
+				<h1 class="hero-text">{{ trans('slide.title_02') }}</h1>
 				<p class="sub-text">
-					Using simple HTML markup, get a complete existing website with great design up and running in no time.
+					{{ trans('slide.message_02') }}
 				</p>
 				<div class="video-wrapper">
 					<div class="video animated fadeInUp">
-						<img src="images/player.png" id="demo-player" alt="videoplayer" />
+						<img src="img/template/player.png" id="demo-player" alt="videoplayer" />
 					</div>
 				</div>
 			</div>
@@ -50,15 +49,14 @@
 			<div class="bg"></div>
 			<div class="container">
 				<h1 class="hero-text animated fadeInLeft">
-					Track any data point in your app in real time.
+					{{ trans('slide.title_03') }}
 				</h1>
 				<p class="sub-text animated fadeInLeft">
-					Try our 30 day trial so you can check out all the features that we offer, no contracts
-					or credit card required.
+					{{ trans('slide.message_03') }}
 				</p>
 				<div class="cta animated fadeInRight">
-					<a href="features.html" class="button-outline">See the tour</a>
-					<a href="signup.html" class="button">Sign up free</a>
+					<a href="{{ env('DEMO_SERVER') }}" class="button-outline">{{ trans('slide.button_02') }}</a>
+					<a href="/auth/register" class="button">{{ trans('slide.button_03') }}</a>
 				</div>
 			</div>
 		</div>

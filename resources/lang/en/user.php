@@ -1,6 +1,6 @@
 <?php
 return [
-    
+
         'user'                         =>'User',
         'users'                        =>'Users',
         'account'                      =>'Account',
@@ -42,6 +42,7 @@ return [
         'timezone'                     =>'Time Zone',
         'language'                     =>'Language',
         'invalid_action'               =>'Invalid Action',
+        'insufficient_role'            =>'You do not have enough permission to access to that section.',
 
         //Message
         'saved'                        =>'User was successfully saved!',
@@ -67,7 +68,7 @@ return [
                         'msg_03' => 'If you have any problem verifying your account, please send a email to',
                         'msg_04' => 'to get assistance!',
                         'msg_05' => 'Thanks!'
-                ]   
+                ]
         ],
 
         'account_verified_ok_message' => '<strong>Activation results!</strong><br/><br/>Congratulation [name]!, your account was successfully activated.',
@@ -77,13 +78,15 @@ return [
 
         'signin_content' => [
                 'title' => 'Sign in to your account.',
-                'sign_in_here' => 'Sign in to my account',
+                'sign_in_here' => 'Sign in',
                 'no_account' => 'Don\'t have an account?',
                 'create_one_here' => 'Create one here',
                 'error_facebook' => 'There was a problem trying to get your Facebook credentials. Try again!',
                 'error_login' => 'There was a problem trying to get your credentials. Try again!',
                 'facebook_login' => 'Login with Facebook',
-                'go_to_sign_up' => 'Go to sign up!'
+                'go_to_sign_up' => 'Register a new membership',
+                'forgot_my_password' => 'I forgot my password',
+                'start_your_session' => 'Sign in to start your session'
         ],
 
         'signup_content' =>[
@@ -95,5 +98,6 @@ return [
                 'sign_in_here' => 'Sign in here',
                 'go_to_sign_in' => 'Go to sign in!',
                 'facebook_login' => 'Create your new account with Facebook',
+                'register' => 'Register'
         ]
 ];
