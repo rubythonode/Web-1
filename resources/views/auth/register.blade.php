@@ -1,118 +1,75 @@
-@extends('layouts/master')
-
-@section('navigation') @stop
-
-@section('title') {{ trans('user.signup_content.title') }} @stop 
-
-@section('id_page', 'signup') @stop
+@extends('auth.auth')
 
 @include('partial.message')
 
+@section('htmlheader_title')
+    {{ trans('user.signup_content.title') }}
+@endsection
+
 @section('content')
-	<div class="container">
-		<div class="row header">
-			<div class="col-md-12">
-				<h4>
-					{{ trans('user.signup_content.slogan') }}
-				</h4>
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-				
-				<div class="wrapper clearfix">
-					<div class="formy">
+    <body class="register-page">
+    <div class="register-box">
 
-						<div class="row">
-							<div class="col-md-12">
-								<a href="/login/facebook" class="button button-small col-md-12 text-center">
-									<span class="fa fa-facebook-square"></span>
-									{{ trans('user.signup_content.facebook_login') }} </a>
-								</a>
-							</div>
-						</div>
+        <div class="register-logo">
+            <a href="{{ url('/home') }}"><b>{{ trans('user.signup_content.title') }}</b></a>
+        </div>
 
-						<hr>
+        <div class="register-box-body">
+            <p class="login-box-msg">{{ trans('user.signup_content.slogan') }}</p>
 
-						<div class="row">
-							<div class="col-md-12">
-								{!! Form::open(['url'=>'auth/register', 'role'=>'form']) !!}
-								
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('first_name',trans('user.first_name')) !!}
-											{!! Form::text('first_name', old('first_name'), ['class'=>'form-control']) !!}
-								  		</div>
-							  		</div>
-							  		<div class="col-md-6">
-							  			<div class="form-group">
-							    			{!! Form::label('last_name',trans('user.last_name')) !!}
-											{!! Form::text('last_name', old('last_name'), ['class'=>'form-control']) !!}
-							  			</div>
-							  		</div>
-								</div>
-								
-						  		<div class="form-group">
-						    		{!! Form::label('email',trans('user.email')) !!}
-									{!! Form::text('email', old('email'), ['class'=>'form-control']) !!}
-						  		</div>
-						  		
-						  		<div class="form-group">
-						    		{!! Form::label('password',trans('user.password')) !!}
-									<input type="password" name="password" id="password" class="form-control" value="">	
-						  		</div>
+            <form action="{{ url('/auth/register') }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="{{ trans('user.first_name') }}" name="first_name" value="{{ old('first_name') }}"/>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="{{ trans('user.last_name') }}" name="last_name" value="{{ old('last_name') }}"/>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"/>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Password" name="password"/>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input name="agreement" type="checkbox">&nbsp;{{ trans('globals.read_agree_01') }} <a href="#">{{ trans('globals.read_agree_02') }}</a>
+                            </label>
+                        </div>
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('user.signup_content.register') }}</button>
+                    </div><!-- /.col -->
+                </div>
+            </form>
 
-								<div class="form-group">
-									<label>{{ trans('user.are_you_human') }}</label>
-									{!! Recaptcha::render() !!}
-						  		</div>
+            <hr>
+            <div class="social-auth-links text-center">
+                <a href="/login/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>{{ trans('user.signup_content.facebook_login') }} </a>
+            </div>
 
-								<div class="checkbox">
-						    		<label>
-						      			{!! Form::checkbox('agreement', 'value', false) !!}&nbsp;{{ trans('globals.read_agree_01')  }}&nbsp;
-						      			<a href="#">{{ trans('globals.read_agree_02') }}</a>.
-						    		</label>
-						  		</div>
+            <a href="{{ url('/auth/login') }}" class="text-center">{{ trans('user.signup_content.already_have_account') }}</a>
+        </div><!-- /.form-box -->
+    </div><!-- /.register-box -->
 
-								<div class="submit">
-						  			<button type="submit" class="button-clear col-md-12 text-center">
-							  			<span>{{ trans('user.signup_content.create_my_account') }}</span>
-							  		</button>
-						  		</div>
+    @include('auth.scripts')
 
-								{!! Form::close() !!}
-							</div>
-						</div>						
-					</div>
-				</div> {{-- wrapper --}}
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
 
-				<div class="already-account">
-					{{ trans('user.signup_content.already_have_account') }}
-					<a href="/auth/login" data-toggle="popover" data-placement="top" data-content="{{ trans('user.signup_content.go_to_sign_in') }}" data-trigger="manual">{{ trans('user.signup_content.sign_in_here') }}</a>
-				</div>
-
-			</div>
-		</div>
-	</div>
-@stop
-
-@section('scripts')
-	<script type="text/javascript">
-		$(function ()
-		{
-			$(".already-account a").mouseover(function()
-			{
-  				$(".already-account a").popover('show');
-			});
-
-			$(".already-account a").mouseout(function()
-			{
-  				$(".already-account a").popover('hide');
-			});
-		});
-	</script>
-@stop
-
-@section('footer') @stop
+@endsection

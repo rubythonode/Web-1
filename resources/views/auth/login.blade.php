@@ -1,104 +1,71 @@
-@extends('layouts/master')
-
-@section('navigation') @stop
-
-@section('title') Login @stop 
-
-@section('id_page', 'signup') @stop
+@extends('auth.auth')
 
 @include('partial.message')
 
+@section('htmlheader_title')
+    {{ trans('user.signin_content.title') }}
+@endsection
+
 @section('content')
+<body class="login-page">
+    <div class="login-box">
 
-	<div class="container">
-		<div class="row header">
-			<div class="col-md-12">
-				<h3 class="logo">
-					<a href="/">{{ trans('user.signin_content.title') }}</a>
-				</h3>
-			</div>
-		</div>
+        <div class="login-logo">
+            <a href="{{ url('/home') }}"><b>{{ trans('user.signin_content.sign_in_here') }}</b></a>
+        </div><!-- /.login-logo -->
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="wrapper clearfix">
-					<div class="formy">
+        <div class="login-box-body">
 
-						<div class="row">
-							<div class="col-md-12">
-								<a href="/login/facebook" class="button button-small col-md-12 text-center">
-									<span class="fa fa-facebook-square"></span>
-									{{ trans('user.signin_content.facebook_login') }} </a>
-								</a>
-							</div>
-						</div>
+            <p class="login-box-msg">{{ trans('user.signin_content.start_your_session') }}</p>
 
-						<hr>
+            <form action="{{ url('/auth/login') }}" method = "post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="{{ trans('user.email') }}" name="email"/>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="{{ trans('user.password') }}" name="password"/>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox" name="remember"> {{ trans('user.remember_me')  }}
+                            </label>
+                        </div>
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('user.signin_content.sign_in_here') }}</button>
+                    </div><!-- /.col -->
+                </div>
+            </form>
 
-						<div class="row">
+            <hr>
 
-							<div class="col-md-12">
+            <div class="social-auth-links text-center">
+                <a href="/login/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> {{ trans('user.signin_content.facebook_login') }} </a></a>
+            </div>
 
-								{!! Form::open(['url'=>'auth/login', 'role'=>'form']) !!}
-								
-									<div class="form-group">
-							    		{!! Form::label('email',trans('user.email')) !!}
-										{!! Form::text('email', old('email'), ['class'=>'form-control']) !!}
-							  		</div>
+            <a href="{{ url('/password/email') }}">{{ trans('user.signin_content.forgot_my_password') }}</a><br>
+            <a href="{{ url('/auth/register') }}" class="text-center">{{ trans('user.signin_content.go_to_sign_up') }}</a>
 
-							  		<div class="form-group">
-							    		{!! Form::label('password',trans('user.password')) !!}
-							    		<input type="password" class="form-control" id="password" name="password" />
-							  		</div>
+        </div><!-- /.login-box-body -->
 
-							  		<div class="form-group">
-										<label>{{ trans('user.are_you_human') }}</label>
-										{!! Recaptcha::render() !!}
-						  			</div>
+    </div><!-- /.login-box -->
 
-							  		<div class="checkbox">
-							    		<label>
-							    			{!! Form::checkbox('remember', 'value', false) !!}&nbsp;{{ trans('user.remember_me')  }}
-							    		</label>
-							  		</div>
+    @include('auth.scripts')
 
-							  		<div class="submit">
-							  			<button type="submit" class="button-clear col-md-12 text-center">
-								  			<span>{{ trans('user.signin_content.sign_in_here') }}</span>
-								  		</button>
-							  		</div>
-								
-								{!! Form::close() !!}
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
 
-							</div>
-						</div>						
-					</div>
-				</div>
-				<div class="already-account">
-					{{ trans('user.signin_content.no_account') }}
-					<a href="/auth/register" data-toggle="popover" data-placement="top" data-content="{{ trans('user.signin_content.go_to_sign_up') }}" data-trigger="manual">{{ trans('user.signin_content.create_one_here') }}</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-@stop
-
-@section('scripts')
-	<script type="text/javascript">
-		$(function ()
-		{
-			$(".already-account a").mouseover(function()
-			{
-  				$(".already-account a").popover('show');
-			});
-
-			$(".already-account a").mouseout(function()
-			{
-  				$(".already-account a").popover('hide');
-			});
-		});
-	</script>
-@stop
-
-@section('footer') @stop
+@endsection

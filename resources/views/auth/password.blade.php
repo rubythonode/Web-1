@@ -1,46 +1,63 @@
-@extends('layouts/master')
-@section('page_class') user-password @stop
-{{-- NAVBAR --}}
-@section('navigation')
-	@include('partial.navigation_basic')
-@stop
+@extends('auth.auth')
+
+@include('partial.message')
+
+@section('htmlheader_title')
+    {{ trans('passwords.password_recovery') }}
+@endsection
+
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">{{ trans('user.reset_password') }}</div>
-				<div class="panel-body">
-					@if (session('status'))
-						<div class="alert alert-success">
-							{{ session('status') }}
-						</div>
-					@endif
 
-					@include('partial.message')
+<body class="login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ url('/home') }}"><b>{{ trans('passwords.password_recovery') }}</b></a>
+        </div><!-- /.login-logo -->
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">{{ trans('user.email') }}</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+        <div class="login-box-body">
+            <p class="login-box-msg">{{ trans('passwords.reset_password') }}</p>
+            <form action="{{ url('/password/email') }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"/>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									{{ trans('user.send_password_link') }}
-								</button>
-								{!! link_to(URL::previous(), trans('globals.cancel'), ['class' => 'btn btn-danger']) !!}
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                <div class="row">
+                    <div class="col-xs-2">
+                    </div><!-- /.col -->
+                    <div class="col-xs-8">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('passwords.reset_link') }}</button>
+                    </div><!-- /.col -->
+                    <div class="col-xs-2">
+                    </div><!-- /.col -->
+                </div>
+            </form>
+            <hr>
+            <a href="{{ url('/auth/login') }}">{{ trans('globals.sign_in_label') }}</a><br>
+            <a href="{{ url('/auth/register') }}" class="text-center">{{ trans('passwords.register_a_new_membership') }}</a>
+
+        </div><!-- /.login-box-body -->
+
+    </div><!-- /.login-box -->
+
+    @include('auth.scripts')
+
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+
 @endsection

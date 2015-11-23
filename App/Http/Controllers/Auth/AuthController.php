@@ -47,7 +47,7 @@ class AuthController extends Controller
             $rules['g-recaptcha-response'] = 'required|recaptcha';
         }
         return Validator::make($data, $rules);
-    }    
+    }
 
     /**
      * Create a new authentication controller instance.
@@ -80,17 +80,17 @@ class AuthController extends Controller
         $user = User::create($data);
 
         //Confirmation email
-        \Mail::queue('emails.accountVerification', 
+        \Mail::queue('emails.accountVerification',
         [
-            'data' => $data, 
-            'title' => trans('user.emails.verification_account.subject'), 
+            'data' => $data,
+            'title' => trans('user.emails.verification_account.subject'),
             'name' => $user->first_name.' '.$user->last_name
-        ], 
+        ],
         function ($message) use ($data)
         {
             $message->to($data['email'])->subject(trans('user.emails.verification_account.subject'));
         });
-        
+
         \Session::put('message', str_replace('[name]', $name, trans('user.signUp_message')));
 
         \Session::save();
@@ -125,7 +125,7 @@ class AuthController extends Controller
         if (!env('APP_DEBUG', false)) {
             $rules['g-recaptcha-response'] = 'required|recaptcha';
         }
-        
+
         $this->validate($request, $rules);
 
         $credentials = $this->getCredentials($request);
@@ -140,7 +140,7 @@ class AuthController extends Controller
                 [
                     'email' => $this->getFailedLoginMessage(),
                 ]);
-        
+
     }
 
     public function getFacebookAuthorization()
@@ -153,7 +153,7 @@ class AuthController extends Controller
         $facebook = Socialite::driver('facebook')->user();
 
         $url = "/auth/login";
-        
+
         if ($facebook)
         {
             $ourUser = User::select(['id', 'first_name', 'last_name'])
@@ -166,8 +166,8 @@ class AuthController extends Controller
             }
 
             else
-            { 
-                $user = new User();    
+            {
+                $user = new User();
                 $user->first_name = $facebook->user['first_name'];
                 $user->last_name = $facebook->user['last_name'];
                 $user->email = isset($facebook->user['email']) ? $facebook->user['email'] : '';
@@ -184,12 +184,12 @@ class AuthController extends Controller
                         'confirmation_code' => $user->confirmation_code
                     ];
 
-                    \Mail::queue('emails.accountVerification', 
+                    \Mail::queue('emails.accountVerification',
                     [
-                        'data' => $data, 
-                        'title' => trans('user.emails.verification_account.subject'), 
+                        'data' => $data,
+                        'title' => trans('user.emails.verification_account.subject'),
                         'name' => $user->first_name.' '.$user->last_name
-                    ], 
+                    ],
                     function ($message) use ($data)
                     {
                         $message->to($data['email'])->subject(trans('user.emails.verification_account.subject'));
@@ -202,7 +202,7 @@ class AuthController extends Controller
                 {
                     \Session::put('message', str_replace('[name]', $user->first_name.' '.$user->last_name, trans('user.signUp_message2')));
                 }
-            } 
+            }
 
             if (!Auth::loginUsingId($idLogin))
             {

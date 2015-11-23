@@ -1,14 +1,10 @@
 <?php
-
 $class = Session::get('messageClass') ? Session::get('messageClass') : 'success';
 $icon = Session::get('messageIcon') ? Session::get('messageIcon') : '';
 $title = Session::get('messageTitle') ? Session::get('messageTitle') : '';
-
 $m = Session::get('message');
 $m = $m ? (is_array($m) ? Html::ul($m) : '<p>'.$m.'</p>' ) : '';
-
 $e = $errors->any() ? Html::ul($errors->all()) : '';
-
 Session::forget('message');
 Session::forget('messageClass');
 Session::forget('messageIcon');
@@ -32,7 +28,6 @@ Session::save();
             icon : @if ($icon!='') '{{ $icon }}' @else true @endif
         });
       @endif
-
       @if($e!='')
         new PNotify({
             title: '{{ trans("globals.error_alert_title") }}',
@@ -43,7 +38,6 @@ Session::save();
             styling: 'bootstrap3'
         });
       @endif
-
     });
     </script>
   @stop
