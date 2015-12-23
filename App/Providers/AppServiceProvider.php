@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Company;
-use Blade;
 use Auth;
+use Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,22 +15,22 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    { 
-        Blade::directive('hasrole', function($expression) {
+    {
+        Blade::directive('hasrole', function ($expression) {
 
-            $expression = explode(',',str_replace(['(',')',"'"], '', $expression));
-            
-            return "<?php if(".(Auth::user() && Auth::user()->hasRole($expression)?1:0)."): ?>";
+            $expression = explode(',', str_replace(['(', ')', "'"], '', $expression));
+
+            return '<?php if('.(Auth::user() && Auth::user()->hasRole($expression) ? 1 : 0).'): ?>';
 
         });
 
-        Blade::directive('endhasrole', function() {
-            return "<?php endif; ?>";
+        Blade::directive('endhasrole', function () {
+            return '<?php endif; ?>';
         });
 
-        $table = "company";
+        $table = 'company';
         if (\Schema::hasTable($table)) {
-            $main_company=Company::find(1);
+            $main_company = Company::find(1);
             \View::share('main_company', $main_company);
         }
     }

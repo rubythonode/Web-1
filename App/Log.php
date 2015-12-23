@@ -8,12 +8,12 @@ class Log extends Model
 {
     protected $table = 'logs';
 
-    protected $fillable = [ 'type', 'details', 'source_id', 'user_id' ];
+    protected $fillable = ['type', 'details', 'source_id', 'user_id'];
 
-    protected $appends = [ 'source_type', 'action_type' ];
+    protected $appends = ['source_type', 'action_type'];
 
-    protected $hidden = [ 'action', 'source' ];
-    
+    protected $hidden = ['action', 'source'];
+
     public function user()
     {
         return $this->belongsTo('App\User');

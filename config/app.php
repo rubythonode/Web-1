@@ -153,7 +153,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class
+        Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
     ],
 
     /*

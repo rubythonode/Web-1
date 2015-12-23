@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-         $this->call('CompanyTableSeeder');
-         $this->call('UsersTableSeeder');
-         $this->call('LogsTableSeeder');
-         $this->call('NoticesTableSeeder');
-         $this->call('ProductsTableSeeder');
-         $this->call('OrdersTableSeeder');
+        $this->call('CompanyTableSeeder');
+        $this->call('UsersTableSeeder');
+        $this->call('LogsTableSeeder');
+        $this->call('NoticesTableSeeder');
+        $this->call('ProductsTableSeeder');
+        $this->call('OrdersTableSeeder');
 
         Model::reguard();
     }
