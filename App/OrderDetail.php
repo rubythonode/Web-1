@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
-   /**
+    /**
      * The database table used by the model.
      *
      * @var string
@@ -23,7 +23,7 @@ class OrderDetail extends Model
         'product_id',
         'price',
         'quantity',
-        'status'
+        'status',
     ];
 
     protected $appends = ['product'];

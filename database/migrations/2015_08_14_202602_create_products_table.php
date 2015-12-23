@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductsTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('type', ['store','module','development']);
+            $table->enum('type', ['store', 'module', 'development']);
             $table->string('name', 100);
             $table->string('description', 500);
             $table->string('stripe_plan', 100)->nullable();
@@ -25,7 +25,6 @@ class CreateProductsTable extends Migration
             $table->integer('sale_counts')->unsigned();
             $table->integer('view_counts')->unsigned();
 
-            
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@
 */
 
 Route::controllers([
-    'auth' => 'Auth\AuthController',
+    'auth'     => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
 
@@ -27,7 +27,7 @@ Route::get('img/{file?}', 'FileController@img')->where('file', '(.*)');
 Route::get('verification/{token}', 'UserController@accountVerification');
 
 // home controllers
-Route::get('/', ['as'=>'home', 'uses'=>'HomeController@index']);
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::group(['prefix' => 'home'], function () {
 
@@ -38,21 +38,20 @@ Route::group(['prefix' => 'home'], function () {
 // admin panel
 Route::group(['prefix' => 'apanel', 'roles' => ['root', 'admin'], 'middleware' => ['auth', 'roles']], function () {
 
-	Route::resource('users', 'UsersController');
+    Route::resource('users', 'UsersController');
 
 });
 
 //support panel
-Route::group(['prefix' => 'support', 'roles' => ['root', 'admin', 'support'], 'middleware'=>['auth', 'roles']], function () {
+Route::group(['prefix' => 'support', 'roles' => ['root', 'admin', 'support'], 'middleware' => ['auth', 'roles']], function () {
 
-	Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
 
 });
 
 // clients panel
-Route::group(['prefix'=>'client', 'roles' => ['root', 'admin', 'client'], 'middleware'=>['auth', 'roles']], function () {
+Route::group(['prefix' => 'client', 'roles' => ['root', 'admin', 'client'], 'middleware' => ['auth', 'roles']], function () {
 
-	Route::resource('users', 'UsersController', ['only' => ['update', 'show', 'edit']]);
+    Route::resource('users', 'UsersController', ['only' => ['update', 'show', 'edit']]);
 
 });
-

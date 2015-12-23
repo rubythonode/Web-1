@@ -1,20 +1,19 @@
-<?php namespace app\Http\Controllers;
+<?php
 
-use App\Http\Requests;
-use App\User;
+namespace app\Http\Controllers;
+
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProductsController;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
     private $form_rules = [
-        'email'                 =>"required|email|unique:users,email,",
-        'password'              =>'required|min:6',
-        'first_name'            =>'required|min:3|max:20|string',
-        'last_name'             =>'required|min:3|max:20|string'
+        'email'                 => 'required|email|unique:users,email,',
+        'password'              => 'required|min:6',
+        'first_name'            => 'required|min:3|max:20|string',
+        'last_name'             => 'required|min:3|max:20|string',
     ];
 
     /**
@@ -25,7 +24,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(15);
-        return view('user.list',compact('users'));
+
+        return view('user.list', compact('users'));
     }
 
     /**
@@ -41,27 +41,27 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
     {
-
         $v = \Validator::make($request->all(), $this->form_rules);
         if ($v->fails()) {
             $request->flash();
-            return view('user.form')->withErrors($v->errors())->withInput($request->except("password"));
+
+            return view('user.form')->withErrors($v->errors())->withInput($request->except('password'));
         }
 
-        $user = new User;
+        $user = new User();
         $user->fill($request->all());
 
-        $user->password=bcrypt($request->get('password'));
+        $user->password = bcrypt($request->get('password'));
 
         $auth = \Auth::user();
 
-        if($auth && $auth->hasRole(['root','admin'])){
-
+        if ($auth && $auth->hasRole(['root', 'admin'])) {
             $user->role = $request->get('role');
             $user->status = $request->get('status');
         }
@@ -74,40 +74,40 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
     {
-
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
     {
-        $user = User::where('id',$id)->first();
+        $user = User::where('id', $id)->first();
 
         if (!$user || !User::cantUpdate($id)) {
-
             return redirect()
                     ->route(Utility::panelRoute('users.index'))
                     ->withErrors([trans('user.invalid_action')]);
         }
 
-        return view('user.form',compact('user'));
+        return view('user.form', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function update(Request $request, $id)
@@ -115,32 +115,30 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if (!$user || !User::cantUpdate($id)) {
-
             return redirect()
                     ->route(Utility::panelRoute('users.index'))
                     ->withErrors([trans('user.invalid_action')]);
         }
 
-
-
-        dd($id,$request);
+        dd($id, $request);
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
     {
-       //
+        //
     }
 
-
     /**
-     * Desactiva el perfil del usuario
+     * Desactiva el perfil del usuario.
+     *
      * @return string json
      */
     public function disable(Request $request)
@@ -149,7 +147,8 @@ class UsersController extends Controller
     }
 
     /**
-     * Activa el perfil del usuario
+     * Activa el perfil del usuario.
+     *
      * @return string json
      */
     public function active(Request $request)
@@ -157,26 +156,22 @@ class UsersController extends Controller
         ///
     }
 
-
     /**
-     * accountVerification allows users account verification
-     * @param  [string] $token is the var sent to users email to validate if the account belongs to him or not.
+     * accountVerification allows users account verification.
+     *
+     * @param [string] $token is the var sent to users email to validate if the account belongs to him or not.
      */
     public function accountVerification($token)
     {
         //validating if the token retrieved is valid
         $user = User::select(['id'])
-            ->where('confirmation_code','LIKE', $token)
+            ->where('confirmation_code', 'LIKE', $token)
             ->first();
 
-        if ($user)
-        {
+        if ($user) {
             $name = $user->name.' '.$user->last_name;
             Session::put('message', str_replace('[name]', $name, trans('user.account_verified_ok_message')));
-        }
-
-        else
-        {
+        } else {
             Session::put('messageClass', 'alert alert-danger');
             Session::put('message', trans('user.account_verified_error_message'));
         }
@@ -185,5 +180,4 @@ class UsersController extends Controller
 
         return redirect('/');
     }
-
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App;
 
@@ -13,7 +13,7 @@ class Company extends Model
      */
     protected $table = 'company';
 
-    public $primaryKey  = 'id';
+    public $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +48,4 @@ class Company extends Model
         'terms_of_service',
 
     ];
-
 }
