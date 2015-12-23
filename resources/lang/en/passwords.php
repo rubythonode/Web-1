@@ -13,14 +13,14 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset information!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We cannot find a user with that e-mail address.",
-    'password_recovery' => 'Password recovery',
-    'reset_password' => 'Reset Password',
-    'reset_link' => 'Send Password Reset Link',
-    'register_a_new_membership' => 'Register a new membership'
+    'password'                  => 'Passwords must be at least six characters and match the confirmation.',
+    'reset'                     => 'Your password has been reset!',
+    'sent'                      => 'We have e-mailed your password reset information!',
+    'token'                     => 'This password reset token is invalid.',
+    'user'                      => 'We cannot find a user with that e-mail address.',
+    'password_recovery'         => 'Password recovery',
+    'reset_password'            => 'Reset Password',
+    'reset_link'                => 'Send Password Reset Link',
+    'register_a_new_membership' => 'Register a new membership',
 
 ];

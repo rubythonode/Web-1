@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -24,9 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-
-    protected $fillable = ['first_name', 'last_name', 'email', 'password','language','timezone'];
-
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'language', 'timezone'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -35,7 +33,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
-     public function order()
+    public function order()
     {
         return $this->hasMany('App\Order');
     }
@@ -48,6 +46,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         return $this->attributes['role'] == $role;
     }
+
     public function isAdministrator()
     {
         return $this->attributes['role'] == 'admin';
@@ -68,15 +67,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->attributes['role'] == 'support';
     }
 
-    static function cantUpdate($id)
+    public static function cantUpdate($id)
     {
         return \Auth::check() &&
-               ( \Auth::id() == $id ||
-               ( \Auth::user() && in_array( \Auth::user()->role,['admin', 'root']) ) ) ;
+               (\Auth::id() == $id ||
+               (\Auth::user() && in_array(\Auth::user()->role, ['admin', 'root'])));
     }
 
-    static function cantDelete($id)
+    public static function cantDelete($id)
     {
-        return \Auth::user() && in_array(\Auth::user()->role, ['admin', 'root']) ;
+        return \Auth::user() && in_array(\Auth::user()->role, ['admin', 'root']);
     }
 }
