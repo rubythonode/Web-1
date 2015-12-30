@@ -1,0 +1,13 @@
+{
+    "name": "gocanto/g-tickets",
+    "description": "Support Tickets Package Controller",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gustavo Ocanto",
+            "email": "gustavoocanto@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

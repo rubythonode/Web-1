@@ -154,6 +154,7 @@ return [
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
+        Gocanto\gTickets\GocantoTicketsServiceProvider::class,
     ],
 
     /*
@@ -217,6 +218,7 @@ return [
 
         'Menu'      => App\Helpers\Menu::class,
         'Utility'   => App\Helpers\Utility::class,
+        'gTickets'  => Gocanto\gTickets\GocantoTicketsServiceProvider::class
 
     ],
 

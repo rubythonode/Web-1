@@ -2,7 +2,7 @@
 
 @section('title') Home @stop
 
-@section('id_page', 'home2') @stop
+@section('id_page', 'home2')
 
 @include('partial.message')
 
