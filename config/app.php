@@ -218,7 +218,7 @@ return [
 
         'Menu'      => App\Helpers\Menu::class,
         'Utility'   => App\Helpers\Utility::class,
-        'gTickets'  => Gocanto\gTickets\GocantoTicketsServiceProvider::class
+        'gTickets'  => Gocanto\gTickets\GocantoTicketsServiceProvider::class,
 
     ],
 
